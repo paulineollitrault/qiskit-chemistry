@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 # This code is part of Qiskit.
 #
 # (C) Copyright IBM 2018, 2019.
@@ -12,6 +10,14 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-from ._inputparser import InputParser
 
-__all__ = ['InputParser']
+.PHONY: lint style test
+
+lint:
+	pylint -rn --errors-only --ignore=gauopen qiskit/chemistry test
+
+style:
+	pycodestyle --max-line-length=210 --exclude=gauopen qiskit/chemistry test
+
+test:
+	python -m unittest discover -v test
